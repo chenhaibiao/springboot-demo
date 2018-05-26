@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.springboot.mapper.MessageMapper">
+  <resultMap id="BaseResultMap" type="com.springboot.model.Message">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+    <result column="insert_date" jdbcType="TIMESTAMP" property="insertDate" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, ip, nick_name, insert_date
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from message
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from message
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.springboot.model.Message">
+    insert into message (id, ip, nick_name, 
+      insert_date)
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{nickName,jdbcType=VARCHAR}, 
+      #{insertDate,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.springboot.model.Message">
+    insert into message
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="ip != null">
+        ip,
+      </if>
+      <if test="nickName != null">
+        nick_name,
+      </if>
+      <if test="insertDate != null">
+        insert_date,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null">
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null">
+        #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.springboot.model.Message">
+    update message
+    <set>
+      <if test="ip != null">
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="nickName != null">
+        nick_name = #{nickName,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDate != null">
+        insert_date = #{insertDate,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.springboot.model.Message">
+    update message
+    set ip = #{ip,jdbcType=VARCHAR},
+      nick_name = #{nickName,jdbcType=VARCHAR},
+      insert_date = #{insertDate,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+</mapper>
