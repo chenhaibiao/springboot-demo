@@ -3,6 +3,7 @@ package com.springboot.mapper;
 import com.springboot.model.Message;
 
 public interface MessageMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(Message record);

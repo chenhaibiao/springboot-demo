@@ -24,8 +24,8 @@ public class HelloController {
 	@Autowired 
 	@Qualifier("messageService")
 	private IMessageService messageService; 
-	
-	@RequestMapping("/message") 
+
+	@RequestMapping("/message")
 	@ResponseBody
 	public String message(Model model){ 
 		Message message = messageService.selectByPrimaryKey(1);
@@ -36,7 +36,7 @@ public class HelloController {
 	public ModelAndView hello(HttpServletRequest request, HttpServletResponse response){ 
 		ModelAndView mav = new ModelAndView("HelloHtml");
 		mav.addObject("hello", "hello springboot");
-		return mav; 
+		return mav;
 	} 
 }
 
