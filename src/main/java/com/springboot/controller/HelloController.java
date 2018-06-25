@@ -37,6 +37,15 @@ public class HelloController {
 		ModelAndView mav = new ModelAndView("HelloHtml");
 		mav.addObject("hello", "hello springboot");
 		return mav;
-	} 
+	}
+	@RequestMapping("/save")
+	public ModelAndView save(HttpServletRequest request, HttpServletResponse response){
+		messageService.insert();
+		Message message = messageService.selectByPrimaryKey(2);
+		ModelAndView mav = new ModelAndView("HelloHtml");
+		mav.addObject("nickName", message.getNickName());
+		mav.addObject("id", message.getId());
+		return mav;
+	}
 }
 

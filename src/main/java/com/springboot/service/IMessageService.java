@@ -6,4 +6,7 @@ public interface IMessageService {
 
 	Message selectByPrimaryKey(Integer id);
 
+	void insertMessage();
+
+	void insert();
 }

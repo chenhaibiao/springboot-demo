@@ -16,18 +16,18 @@ import org.springframework.web.filter.OncePerRequestFilter;
 @Component
 @WebFilter(urlPatterns = "/login/*", filterName = "loginFilter")
 public class LoginFilter extends OncePerRequestFilter {
-	
+
 	private final Logger logger = LoggerFactory.getLogger(LoginFilter.class);
-	
+
 	@Override
 	protected void doFilterInternal(HttpServletRequest request,
 			HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 		logger.debug("filter");
-		
+
 		filterChain.doFilter(request, response);
-		
+
 	}
 
-    
+
 }
