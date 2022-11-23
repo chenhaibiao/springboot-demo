@@ -4,18 +4,20 @@
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 <generatorConfiguration>
 	<context id="MySQLTables" targetRuntime="MyBatis3">
-		<commentGenerator>
+		<commentGenerator type="com.springboot.controller.MyCommentGenerator">
 			<property name="suppressDate" value="true" />
-			<property name="suppressAllComments" value="true" />
+			<property name="suppressAllComments" value="false" />
+			<!-- 是否添加数据表中字段的注释 true：是 ： false:否 -->
+			<property name="addRemarkComments" value="true"/>
 		</commentGenerator>
 		<!--数据库链接地址账号密码 -->
 		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
-			connectionURL="jdbc:mysql://127.0.0.1/test" userId="root" password="root"></jdbcConnection>
+			connectionURL="jdbc:mysql://127.0.0.1/wl_project" userId="root" password="root"></jdbcConnection>
 		<javaTypeResolver>
 			<property name="forceBigDecimals" value="false" />
 		</javaTypeResolver>
 		<!--生成Model类存放位置 -->
-		<javaModelGenerator targetPackage="com.springboot.model"
+		<javaModelGenerator targetPackage="com.welink.platform.pms.domain.pojo.po"
 			targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 			<property name="trimStrings" value="true" />
@@ -27,14 +29,46 @@
 		</sqlMapGenerator>
 		<!--生成Dao类存放位置 -->
 		<javaClientGenerator type="XMLMAPPER"
-			targetPackage="com.springboot.mapper" targetProject="src/main/java">
+			targetPackage="com.welink.platform.pms.infrastructure.mysql" targetProject="src/main/java">
 			<property name="enableSubPackages" value="true" />
 		</javaClientGenerator>
 		<!--生成对应表及类名 -->
 		<!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名 -->
-		<table tableName="message" domainObjectName="Message"
+		<table tableName="product_info" domainObjectName="ProductInfoPO"
 			enableCountByExample="false" enableUpdateByExample="false"
 			enableDeleteByExample="false" enableSelectByExample="false"
-			selectByExampleQueryId="false"></table>
+			selectByExampleQueryId="false">
+		</table>
+		<table tableName="project_base_info" domainObjectName="ProjectBaseInfoPO"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
+		<table tableName="project_base_info_snapshot" domainObjectName="ProjectBaseInfoSnapshotPO"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
+		<table tableName="project_milestone_info" domainObjectName="ProjectMilestoneInfoPO"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
+		<table tableName="project_milestone_info_snapshot" domainObjectName="ProjectMilestoneInfoSnapshotPO"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
+		<table tableName="task_info" domainObjectName="TaskInfoPO"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
+		<table tableName="task_info_snapshot" domainObjectName="TaskInfoSnapshotPO"
+			   enableCountByExample="false" enableUpdateByExample="false"
+			   enableDeleteByExample="false" enableSelectByExample="false"
+			   selectByExampleQueryId="false">
+		</table>
+
 	</context>
 </generatorConfiguration>
